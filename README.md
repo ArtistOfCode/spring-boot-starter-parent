@@ -18,12 +18,11 @@
 Spring Boot 框架的码匠实现
 
 - spring-boot-dependencies：依赖管理
-- spring-boot-autoconfigure：自动配置组件
+- spring-boot-autoconfigure：自动配置
 - spring-boot-starter-core：核心组件
 - spring-boot-starter-cache：缓存组件
-- spring-boot-starter-generator：代码生成组件
-- spring-boot-starter-web：Web项目组件
-- spring-boot-starter-sample：组件示例
+- spring-boot-starter-web：Web组件
+- spring-boot-starter-sample：示例项目
 
 ### RELEASE
 
@@ -35,6 +34,6 @@ Spring Boot 框架的码匠实现
 > - 特性：新增自动配置组件
 > - 特性：新增核心组件
 > - 特性：新增缓存组件
-> - 特性：新增代码生成组件
+> - 特性：新增消息列队组件
 > - 特性：新增Web项目组件
 > - 特性：新增组件示例项目
