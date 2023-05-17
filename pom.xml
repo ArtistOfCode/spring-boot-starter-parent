@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.codeartist</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>spring-boot-dependencies</module>
+        <module>spring-boot-starter-core</module>
+        <module>spring-boot-starter-cache</module>
+        <module>spring-boot-starter-metric</module>
+        <module>spring-boot-starter-mq</module>
+        <module>spring-boot-starter-sample</module>
+        <module>spring-boot-autoconfigure</module>
+        <module>spring-boot-starter-web</module>
+    </modules>
+
+    <description>码匠技术中台</description>
+
+</project>

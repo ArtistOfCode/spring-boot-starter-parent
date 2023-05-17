@@ -1,0 +1,17 @@
+# Auto Configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.codeartist.component.autoconfigure.metrics.MetricAutoConfiguration,\
+com.codeartist.component.autoconfigure.metrics.MetricsRegistryAutoConfiguration,\
+com.codeartist.component.autoconfigure.transaction.TransactionAutoConfiguration,\
+com.codeartist.component.autoconfigure.web.WebAutoConfiguration,\
+com.codeartist.component.autoconfigure.mybatis.MyBatisConfiguration,\
+com.codeartist.component.autoconfigure.cache.CacheAutoConfiguration,\
+com.codeartist.component.autoconfigure.mq.MqAutoConfiguration,\
+com.codeartist.component.autoconfigure.swagger.SwaggerAutoConfiguration,\
+com.codeartist.component.autoconfigure.thread.ThreadAutoConfiguration,\
+com.codeartist.component.autoconfigure.feign.FeignClientsConfiguration,\
+com.codeartist.component.autoconfigure.sleuth.TraceAutoConfiguration,\
+com.codeartist.component.autoconfigure.captcha.CaptchaAutoConfiguration
+# Bootstrap Configuration
+org.springframework.cloud.bootstrap.BootstrapConfiguration=\
+com.codeartist.component.autoconfigure.web.WebBootstrapAutoConfiguration

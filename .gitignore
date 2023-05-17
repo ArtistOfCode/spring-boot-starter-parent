@@ -1,0 +1,29 @@
+# IDEA
+.idea
+*.iml
+
+# Eclipse
+.settings/
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+.classpath
+.loadpath
+
+# maven
+target
+*.jar
+*.war
+*.ear
+*.class
+
+# Log
+logs
+*.log

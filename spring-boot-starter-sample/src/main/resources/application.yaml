@@ -1,0 +1,2 @@
+# MyBatis Plus
+mybatis-plus.type-aliases-package: com.codeartist.component.sample.entity.model

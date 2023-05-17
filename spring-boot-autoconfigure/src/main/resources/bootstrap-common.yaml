@@ -1,0 +1,26 @@
+# Spring Jackson
+spring.jackson.time-zone: GMT+8
+spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
+# Spring Datasource
+spring.datasource.h2.url: jdbc:h2:mem:default;MODE=MySQL;DATABASE_TO_LOWER=TRUE;INIT=RUNSCRIPT FROM 'classpath:sql/init.sql'
+# Spring Cloud Consul
+spring.cloud.consul.discovery.instanceId: ${spring.application.name}-${spring.cloud.client.ip-address}
+spring.cloud.consul.discovery.preferIpAddress: true
+spring.cloud.consul.discovery.queryPassing: true
+spring.cloud.consul.config.watch.enabled: false
+# MyBatis Plus
+mybatis-plus.configuration.map-underscore-to-camel-case: true
+mybatis-plus.global-config.banner: false
+mybatis-plus.global-config.db-config.id-type: AUTO
+mybatis-plus.global-config.db-config.logic-delete-field: deleted
+mybatis-plus.global-config.db-config.logic-delete-value: 1
+mybatis-plus.global-config.db-config.logic-not-delete-value: 0
+# Management
+spring.cloud.discovery.client.health-indicator.enabled: false
+management.endpoint.health.show-details: always
+management.endpoints.web.exposure:
+  include: beans,health,configprops,env,info,loggers,prometheus,scheduledtasks,mappings,service-registry,features,gateway
+management.metrics.tags.application: ${spring.application.name}
+management.info.git.mode: FULL
+# Logging
+logging.config: classpath:logback-spring.xml
