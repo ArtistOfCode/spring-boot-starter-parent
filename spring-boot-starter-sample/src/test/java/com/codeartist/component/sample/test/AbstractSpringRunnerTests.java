@@ -1,6 +1,5 @@
 package com.codeartist.component.sample.test;
 
-import com.codeartist.component.sample.SampleApplication;
 import org.mockito.BDDMockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  */
 @ActiveProfiles({"junit", "local"})
 @AutoConfigureMockMvc
-@SpringBootTest(classes = SampleApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public abstract class AbstractSpringRunnerTests {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
