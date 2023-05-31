@@ -1,4 +1,4 @@
-package com.codeartist.component.core.entity;
+package com.codeartist.component.core.api;
 
 /**
  * 编码描述

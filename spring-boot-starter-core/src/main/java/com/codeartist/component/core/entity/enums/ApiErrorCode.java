@@ -1,6 +1,6 @@
 package com.codeartist.component.core.entity.enums;
 
-import com.codeartist.component.core.entity.ICode;
+import com.codeartist.component.core.api.ICode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

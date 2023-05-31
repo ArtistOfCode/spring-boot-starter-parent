@@ -2,13 +2,13 @@ package com.codeartist.component.mq.core.impl;
 
 import com.codeartist.component.core.support.serializer.TypeRef;
 import com.codeartist.component.core.util.JSON;
-import com.codeartist.component.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqContext;
 import com.codeartist.component.mq.bean.MqProperties;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import com.codeartist.component.mq.core.MqConsumer;
 import com.codeartist.component.mq.exception.MqException;
 import com.codeartist.component.mq.metric.MqMetrics;
-import com.codeartist.component.mq.support.MqConsumerEvent;
+import com.codeartist.component.core.support.mq.bean.MqConsumerEvent;
 import com.codeartist.component.mq.support.MqEventListenerFactory;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

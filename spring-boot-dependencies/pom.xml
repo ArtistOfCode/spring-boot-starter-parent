@@ -24,7 +24,6 @@
         <spring-boot-starter-mq.version>1.0.0-SNAPSHOT</spring-boot-starter-mq.version>
         <spring-boot-starter-metric.version>1.0.0-SNAPSHOT</spring-boot-starter-metric.version>
         <spring-boot-starter-web.version>1.0.0-SNAPSHOT</spring-boot-starter-web.version>
-        <spring-boot-starter-generator.version>1.0.0-SNAPSHOT</spring-boot-starter-generator.version>
         <!-- 第三方框架 -->
         <spring-cloud-dependencies.version>Hoxton.RELEASE</spring-cloud-dependencies.version>
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>

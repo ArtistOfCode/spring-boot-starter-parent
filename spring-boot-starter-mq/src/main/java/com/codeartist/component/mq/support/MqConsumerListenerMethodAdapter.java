@@ -1,6 +1,7 @@
 package com.codeartist.component.mq.support;
 
-import com.codeartist.component.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqConsumerEvent;
+import com.codeartist.component.core.support.mq.bean.MqContext;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.ApplicationListenerMethodAdapter;
 import org.springframework.core.ResolvableType;

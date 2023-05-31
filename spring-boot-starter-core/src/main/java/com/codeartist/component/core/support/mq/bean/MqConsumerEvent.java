@@ -1,7 +1,7 @@
-package com.codeartist.component.mq.support;
+package com.codeartist.component.core.support.mq.bean;
 
-import com.codeartist.component.mq.bean.MqContext;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import org.springframework.context.ApplicationEvent;
 
 /**

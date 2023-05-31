@@ -1,6 +1,6 @@
 package com.codeartist.component.core.exception;
 
-import com.codeartist.component.core.entity.ICode;
+import com.codeartist.component.core.api.ICode;
 
 /**
  * 业务异常，返回客户端异常消息，warn 级别日志

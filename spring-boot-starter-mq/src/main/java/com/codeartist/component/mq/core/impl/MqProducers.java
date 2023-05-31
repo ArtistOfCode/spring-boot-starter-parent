@@ -1,8 +1,8 @@
 package com.codeartist.component.mq.core.impl;
 
-import com.codeartist.component.mq.bean.MqHeaders;
-import com.codeartist.component.mq.bean.MqMessage;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqHeaders;
+import com.codeartist.component.core.support.mq.bean.MqMessage;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;

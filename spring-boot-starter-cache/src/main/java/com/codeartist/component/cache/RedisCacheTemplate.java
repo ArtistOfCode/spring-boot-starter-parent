@@ -15,7 +15,7 @@ public interface RedisCacheTemplate extends CacheTemplate {
 
     <T> T cache(String key, Duration duration, TypeRef<T> clazz, Supplier<T> supplier);
 
-    /*****Hash缓存*****/
+    // Hash缓存
 
     <T> T get(String key, String hashKey, Class<T> clazz);
 
@@ -25,7 +25,7 @@ public interface RedisCacheTemplate extends CacheTemplate {
 
     void delete(String key, String... hashKey);
 
-    /*****分布式锁*****/
+    // 分布式锁
 
     <T> T lock(String key, Duration duration, Supplier<T> supplier);
 
@@ -36,7 +36,7 @@ public interface RedisCacheTemplate extends CacheTemplate {
         });
     }
 
-    /*****其他操作*****/
+    // 其他操作
 
     void expire(String key, Duration duration);
 

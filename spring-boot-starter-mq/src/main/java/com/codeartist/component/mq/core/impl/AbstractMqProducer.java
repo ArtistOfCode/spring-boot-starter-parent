@@ -2,8 +2,8 @@ package com.codeartist.component.mq.core.impl;
 
 import com.codeartist.component.core.util.Assert;
 import com.codeartist.component.core.util.JSON;
-import com.codeartist.component.mq.bean.MqMessage;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqMessage;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import com.codeartist.component.mq.core.MqProducer;
 import com.codeartist.component.mq.metric.MqMetrics;
 import lombok.Getter;

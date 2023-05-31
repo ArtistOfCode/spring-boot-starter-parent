@@ -1,6 +1,6 @@
 package com.codeartist.component.mq.core;
 
-import com.codeartist.component.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqContext;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 

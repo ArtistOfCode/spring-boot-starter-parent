@@ -1,4 +1,7 @@
-package com.codeartist.component.core.entity;
+package com.codeartist.component.core.api;
+
+import com.codeartist.component.core.entity.RelationParam;
+import com.codeartist.component.core.entity.RelationVO;
 
 /**
  * 关联表操作接口

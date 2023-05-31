@@ -1,4 +1,6 @@
-package com.codeartist.component.core.entity;
+package com.codeartist.component.core.api;
+
+import com.codeartist.component.core.entity.PageInfo;
 
 /**
  * 基础服务类

@@ -1,4 +1,4 @@
-package com.codeartist.component.mq.bean;
+package com.codeartist.component.core.support.mq.bean;
 
 import lombok.*;
 

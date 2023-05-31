@@ -1,8 +1,8 @@
-package com.codeartist.component.mq.annotation;
+package com.codeartist.component.core.support.mq.annotatioin;
 
-import com.codeartist.component.mq.bean.MqHeaders;
-import com.codeartist.component.mq.bean.MqType;
-import com.codeartist.component.mq.support.MqConsumerEvent;
+import com.codeartist.component.core.support.mq.bean.MqConsumerEvent;
+import com.codeartist.component.core.support.mq.bean.MqHeaders;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.AliasFor;
 

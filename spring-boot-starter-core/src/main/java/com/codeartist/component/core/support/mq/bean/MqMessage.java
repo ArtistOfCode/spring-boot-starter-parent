@@ -1,5 +1,7 @@
-package com.codeartist.component.mq.bean;
+package com.codeartist.component.core.support.mq.bean;
 
+import com.codeartist.component.core.support.mq.bean.MqHeaders;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import lombok.*;
 
 /**

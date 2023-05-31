@@ -1,10 +1,10 @@
 package com.codeartist.component.sample.consumer;
 
 import com.codeartist.component.core.util.JSON;
-import com.codeartist.component.mq.annotation.RedisMqConsumer;
-import com.codeartist.component.mq.bean.MqContext;
-import com.codeartist.component.mq.bean.MqMessage;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.annotatioin.RedisMqConsumer;
+import com.codeartist.component.core.support.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqMessage;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import com.codeartist.component.sample.entity.Example;
 import com.codeartist.component.sample.entity.User;
 import lombok.extern.slf4j.Slf4j;

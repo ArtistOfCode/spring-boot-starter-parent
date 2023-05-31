@@ -1,6 +1,6 @@
 package com.codeartist.component.mq.exception;
 
-import com.codeartist.component.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqContext;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

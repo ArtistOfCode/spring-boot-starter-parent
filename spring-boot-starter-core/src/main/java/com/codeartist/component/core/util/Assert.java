@@ -1,7 +1,7 @@
 package com.codeartist.component.core.util;
 
 
-import com.codeartist.component.core.entity.ICode;
+import com.codeartist.component.core.api.ICode;
 import com.codeartist.component.core.exception.BusinessException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

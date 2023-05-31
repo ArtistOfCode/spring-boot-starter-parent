@@ -1,8 +1,8 @@
 package com.codeartist.component.mq.support;
 
-import com.codeartist.component.mq.annotation.MqConsumerListener;
-import com.codeartist.component.mq.bean.MqContext;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.annotatioin.MqConsumerListener;
+import com.codeartist.component.core.support.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.context.ApplicationListener;

@@ -1,6 +1,6 @@
 package com.codeartist.component.mq.support;
 
-import com.codeartist.component.mq.bean.MqMessage;
+import com.codeartist.component.core.support.mq.bean.MqMessage;
 import com.codeartist.component.mq.core.MqProducer;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;

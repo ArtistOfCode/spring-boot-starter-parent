@@ -1,6 +1,6 @@
-package com.codeartist.component.mq.annotation;
+package com.codeartist.component.core.support.mq.annotatioin;
 
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;

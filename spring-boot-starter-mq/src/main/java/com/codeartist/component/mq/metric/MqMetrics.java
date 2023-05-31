@@ -1,7 +1,7 @@
 package com.codeartist.component.mq.metric;
 
 import com.codeartist.component.core.support.metric.Metrics;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqType;
 
 /**
  * MQ监控

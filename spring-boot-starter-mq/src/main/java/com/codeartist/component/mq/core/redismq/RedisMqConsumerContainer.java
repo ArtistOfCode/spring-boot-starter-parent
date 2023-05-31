@@ -1,8 +1,8 @@
 package com.codeartist.component.mq.core.redismq;
 
-import com.codeartist.component.mq.bean.MqContext;
-import com.codeartist.component.mq.bean.MqHeaders;
-import com.codeartist.component.mq.bean.MqType;
+import com.codeartist.component.core.support.mq.bean.MqContext;
+import com.codeartist.component.core.support.mq.bean.MqHeaders;
+import com.codeartist.component.core.support.mq.bean.MqType;
 import com.codeartist.component.mq.core.impl.AbstractMqConsumer;
 import com.codeartist.component.mq.exception.MqException;
 import io.lettuce.core.cluster.api.async.RedisClusterAsyncCommands;

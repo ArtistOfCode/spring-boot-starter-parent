@@ -1,5 +1,6 @@
 package com.codeartist.component.core.entity;
 
+import com.codeartist.component.core.api.ICode;
 import lombok.Getter;
 import lombok.Setter;
 
