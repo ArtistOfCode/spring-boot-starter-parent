@@ -2,7 +2,7 @@ package com.codeartist.component.sample.test.mq;
 
 import com.codeartist.component.mq.core.impl.MqProducers;
 import com.codeartist.component.sample.entity.User;
-import com.codeartist.component.sample.test.AbstractSpringRunnerTests;
+import com.codeartist.component.core.support.test.AbstractSpringRunnerTests;
 import org.apache.commons.lang.math.RandomUtils;
 import org.junit.jupiter.api.Test;
 

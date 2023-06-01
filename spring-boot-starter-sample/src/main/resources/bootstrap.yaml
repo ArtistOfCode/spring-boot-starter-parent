@@ -2,6 +2,7 @@
 spring.profiles.active: local
 spring.application.name: sample
 # Spring Cloud Consul
+spring.cloud.consul.enabled: false
 spring.cloud.consul.host: localhost
 spring.cloud.consul.config.enabled: false
 spring.cloud.consul.discovery.register: false

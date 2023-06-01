@@ -1,4 +1,4 @@
-package com.codeartist.component.sample;
+package com.codeartist.component.sample.entity;
 
 import lombok.Data;
 

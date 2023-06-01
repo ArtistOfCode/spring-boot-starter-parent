@@ -1,9 +1,9 @@
 package com.codeartist.component.sample.test.util;
 
 import com.codeartist.component.core.util.JSON;
-import com.codeartist.component.sample.GenericExample;
+import com.codeartist.component.sample.entity.GenericExample;
 import com.codeartist.component.sample.entity.Example;
-import com.codeartist.component.sample.test.AbstractSpringRunnerTests;
+import com.codeartist.component.core.support.test.AbstractSpringRunnerTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

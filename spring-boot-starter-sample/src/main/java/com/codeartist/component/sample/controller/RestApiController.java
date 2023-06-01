@@ -1,6 +1,6 @@
 package com.codeartist.component.sample.controller;
 
-import com.codeartist.component.sample.GenericExample;
+import com.codeartist.component.sample.entity.GenericExample;
 import com.codeartist.component.sample.entity.Example;
 import com.codeartist.component.sample.service.feign.DemoFeignService;
 import lombok.RequiredArgsConstructor;

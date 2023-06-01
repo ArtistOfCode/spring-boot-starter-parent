@@ -1,8 +1,8 @@
 package com.codeartist.component.sample.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.codeartist.component.core.entity.PageInfo;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.codeartist.component.core.api.AbstractService;
+import com.codeartist.component.core.api.BaseConverter;
 import com.codeartist.component.sample.entity.User;
 import com.codeartist.component.sample.entity.converter.UserConverter;
 import com.codeartist.component.sample.entity.param.UserParam;
@@ -19,13 +19,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService extends AbstractService<User, UserVO, UserParam> {
 
     private final UserMapper userMapper;
     private final UserConverter userConverter;
 
-    public PageInfo<UserVO> getPage(UserParam param) {
-        IPage<User> page = userMapper.selectPage(param.page(), new QueryWrapper<>(userConverter.toDo(param)));
-        return new PageInfo<>(page, userConverter::toVo);
+    @Override
+    protected BaseMapper<User> getMapper() {
+        return this.userMapper;
+    }
+
+    @Override
+    protected BaseConverter<User, UserParam, UserVO> getConverter() {
+        return this.userConverter;
     }
 }

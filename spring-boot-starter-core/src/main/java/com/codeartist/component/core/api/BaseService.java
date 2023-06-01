@@ -8,15 +8,13 @@ import com.codeartist.component.core.entity.PageInfo;
  * @author 艾江南
  * @since 2022-08-31
  */
-public interface BaseService<VO, P> {
+public interface BaseService<VO, Param> {
 
     VO get(Long id);
 
-    PageInfo<VO> get(P param);
+    PageInfo<VO> get(Param param);
 
-    void save(P param);
+    void save(Param param);
 
-    default void delete(Long id) {
-        throw new UnsupportedOperationException();
-    }
+    void delete(Long id);
 }

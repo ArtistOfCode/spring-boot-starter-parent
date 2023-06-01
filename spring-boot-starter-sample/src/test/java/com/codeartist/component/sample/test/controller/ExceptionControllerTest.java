@@ -1,11 +1,9 @@
 package com.codeartist.component.sample.test.controller;
 
-import com.codeartist.component.core.util.JSON;
+import com.codeartist.component.core.support.test.AbstractSpringRunnerTests;
 import com.codeartist.component.sample.entity.param.UserParam;
-import com.codeartist.component.sample.test.AbstractSpringRunnerTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -52,10 +50,7 @@ public class ExceptionControllerTest extends AbstractSpringRunnerTests {
                 .andExpect(jsonPath("$.code").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(jsonPath("$.message").value("args.id: must not be null"));
 
-        mockMvc.perform(post("/api/exception/body-args")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(JSON.toJSONString(new UserParam()))
-                )
+        mockMvc.perform(post("/api/exception/body-args", new UserParam()))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.code").value(HttpStatus.BAD_REQUEST.value()))
                 .andExpect(jsonPath("$.message").value("name must not be blank"));

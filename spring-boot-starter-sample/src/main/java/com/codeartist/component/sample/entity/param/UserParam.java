@@ -16,8 +16,10 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserParam extends PageParam {
 
-    private Long id;
-
     @NotBlank
     private String name;
+    @NotBlank
+    private String username;
+    @NotBlank
+    private String password;
 }

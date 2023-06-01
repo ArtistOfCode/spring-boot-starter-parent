@@ -3,7 +3,7 @@ package com.codeartist.component.sample.service;
 import com.codeartist.component.core.support.cache.annotation.Cache;
 import com.codeartist.component.core.support.cache.annotation.CacheDelete;
 import com.codeartist.component.core.support.cache.annotation.CacheLock;
-import com.codeartist.component.sample.GenericExample;
+import com.codeartist.component.sample.entity.GenericExample;
 import com.codeartist.component.sample.entity.Example;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

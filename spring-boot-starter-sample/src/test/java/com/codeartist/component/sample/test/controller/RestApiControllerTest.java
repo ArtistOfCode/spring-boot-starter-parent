@@ -1,6 +1,6 @@
 package com.codeartist.component.sample.test.controller;
 
-import com.codeartist.component.sample.test.AbstractSpringRunnerTests;
+import com.codeartist.component.core.support.test.AbstractSpringRunnerTests;
 import org.junit.jupiter.api.Test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
