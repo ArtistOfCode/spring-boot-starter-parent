@@ -22,6 +22,7 @@
         <module>spring-boot-autoconfigure</module>
         <module>spring-boot-starter-web</module>
         <module>spring-boot-starter-initializr</module>
+        <module>spring-boot-starter-generator</module>
     </modules>
 
     <description>码匠技术中台</description>
