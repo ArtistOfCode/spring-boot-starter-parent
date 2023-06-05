@@ -85,14 +85,16 @@ public class CustomMavenBuildWriter {
         String packaging = settings.getPackaging();
         if (!"jar".equals(packaging)) {
             writeSingleElement(writer, "packaging", packaging);
+            writer.println();
         }
-        writer.println();
     }
 
     private void writeProjectName(IndentingWriter writer, MavenBuildSettings settings) {
         writeSingleElement(writer, "name", settings.getName());
         writeSingleElement(writer, "description", settings.getDescription());
-        writer.println();
+        if (settings.getName() != null) {
+            writer.println();
+        }
     }
 
     private void writeModules(IndentingWriter writer, List<String> modules) {
@@ -113,6 +115,7 @@ public class CustomMavenBuildWriter {
             properties.versions((VersionProperty::toStandardFormat))
                     .forEach((entry) -> writeSingleElement(writer, entry.getKey(), entry.getValue()));
         });
+        writer.println();
     }
 
     private void writeDependencies(IndentingWriter writer, DependencyContainer dependencies) {
@@ -129,8 +132,7 @@ public class CustomMavenBuildWriter {
             writeDependencies(writer, dependencies, hasScope(DependencyScope.COMPILE_ONLY));
             writeDependencies(writer, dependencies, hasScope(DependencyScope.ANNOTATION_PROCESSOR));
             writeDependencies(writer, dependencies, hasScope(DependencyScope.PROVIDED_RUNTIME));
-            writeDependencies(writer, dependencies,
-                    hasScope(DependencyScope.TEST_COMPILE, DependencyScope.TEST_RUNTIME));
+            writeDependencies(writer, dependencies, hasScope(DependencyScope.TEST_COMPILE, DependencyScope.TEST_RUNTIME));
         });
     }
 

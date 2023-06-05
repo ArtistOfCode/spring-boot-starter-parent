@@ -5,6 +5,7 @@ import io.spring.initializr.generator.buildsystem.Dependency;
 import io.spring.initializr.generator.buildsystem.DependencyScope;
 import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.spring.build.BuildCustomizer;
+import io.spring.initializr.generator.version.VersionReference;
 import io.spring.initializr.metadata.InitializrConfiguration;
 import io.spring.initializr.metadata.InitializrMetadata;
 
@@ -18,6 +19,9 @@ import java.util.List;
  * @date 2023/6/3
  */
 public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
+
+    private static final String DEFAULT_RELEASE_VERSION = "1.0.0";
+    private static final String DEFAULT_SNAPSHOT_VERSION = "1.0.0-SNAPSHOT";
 
     private final ProjectDescription description;
     private final InitializrMetadata metadata;
@@ -39,6 +43,7 @@ public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
                 .group(description.getGroupId())
                 .artifact(description.getArtifactId())
                 .version(description.getVersion())
+                .packaging("pom")
                 .name(description.getName())
                 .description(description.getDescription())
         ;
@@ -64,17 +69,20 @@ public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
                 .artifact(build.apiArtifactId())
                 .version(null);
 
-        apiMavenBuild.dependencies().add("1", Dependency
+        apiMavenBuild.dependencies().add("openfeign", Dependency
                 .withCoordinates("org.springframework.cloud", "spring-cloud-starter-openfeign")
                 .scope(DependencyScope.PROVIDED_RUNTIME));
 
-        apiMavenBuild.dependencies().add("2", Dependency
+        apiMavenBuild.dependencies().add("web", Dependency
                 .withCoordinates("org.springframework.boot", "spring-boot-starter-web")
                 .scope(DependencyScope.PROVIDED_RUNTIME));
 
-        apiMavenBuild.dependencies().add("3", Dependency
+        apiMavenBuild.dependencies().add("lombok", Dependency
                 .withCoordinates("org.projectlombok", "lombok")
                 .scope(DependencyScope.PROVIDED_RUNTIME));
+
+        apiMavenBuild.plugins().add(null, "maven-source-plugin");
+        apiMavenBuild.plugins().add("pl.project13.maven", "git-commit-id-plugin");
 
         build.setApiMavenBuild(apiMavenBuild);
     }
@@ -84,8 +92,21 @@ public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
         webMavenBuild.settings()
                 .parent(description.getGroupId(), description.getArtifactId(), description.getVersion())
                 .artifact(build.webArtifactId())
-                .version("1.0.0")
+                .version(DEFAULT_RELEASE_VERSION)
         ;
+
+        webMavenBuild.properties().property("maven.install.skip", "true");
+        webMavenBuild.properties().property("maven.deploy.skip", "true");
+
+        webMavenBuild.dependencies().add("api", Dependency
+                .withCoordinates(description.getGroupId(), build.apiArtifactId())
+                .version(VersionReference.ofValue(DEFAULT_SNAPSHOT_VERSION)));
+        description.getRequestedDependencies()
+                .forEach((id, dependency) -> webMavenBuild.dependencies().add(id, dependency));
+
+        webMavenBuild.plugins().add("org.springframework.boot", "spring-boot-maven-plugin");
+        webMavenBuild.plugins().add("pl.project13.maven", "git-commit-id-plugin");
+
         build.setWebMavenBuild(webMavenBuild);
     }
 }
