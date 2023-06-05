@@ -11,14 +11,14 @@ import java.util.List;
  * @author J.N.AI
  * @date 2023/6/2
  */
-public class ParentMavenBuild extends MavenBuild {
+public class CustomMavenBuild extends MavenBuild {
 
     private List<String> modules;
 
-    public ParentMavenBuild() {
+    public CustomMavenBuild() {
     }
 
-    public ParentMavenBuild(BuildItemResolver buildItemResolver) {
+    public CustomMavenBuild(BuildItemResolver buildItemResolver) {
         super(buildItemResolver);
     }
 

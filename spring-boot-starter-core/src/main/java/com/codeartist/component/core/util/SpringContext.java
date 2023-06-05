@@ -1,10 +1,12 @@
 package com.codeartist.component.core.util;
 
 import com.codeartist.component.core.exception.BadRequestException;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.core.ResolvableType;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.util.CollectionUtils;
@@ -68,6 +70,14 @@ public final class SpringContext implements EnvironmentAware, ApplicationContext
 
     public static <T> T getBean(Class<T> requiredType, Object... args) {
         return applicationContext.getBean(requiredType, args);
+    }
+
+    public static <T> ObjectProvider<T> getBeanProvider(Class<T> requiredType) {
+        return applicationContext.getBeanProvider(requiredType);
+    }
+
+    public static <T> ObjectProvider<T> getBeanProvider(ResolvableType requiredType) {
+        return applicationContext.getBeanProvider(requiredType);
     }
 
     public static void publishEvent(ApplicationEvent event) {

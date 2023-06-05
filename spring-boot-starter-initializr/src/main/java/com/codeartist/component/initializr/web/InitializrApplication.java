@@ -1,4 +1,4 @@
-package com.codeartist.component.initializr;
+package com.codeartist.component.initializr.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
