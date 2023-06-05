@@ -1,10 +1,14 @@
 package com.codeartist.component.initializr.generator;
 
+import com.codeartist.component.initializr.contributor.CustomMavenBuild;
 import com.codeartist.component.initializr.contributor.CustomMavenBuildContributor;
+import com.codeartist.component.initializr.contributor.code.CustomPackageInfoContributor;
+import com.codeartist.component.initializr.contributor.code.CustomTestSourceContributor;
 import io.spring.initializr.generator.project.ProjectAssetGenerator;
 import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.ProjectDirectoryFactory;
 import io.spring.initializr.generator.project.ProjectGenerationContext;
+import io.spring.initializr.generator.spring.code.MainSourceCodeProjectContributor;
 import io.spring.initializr.generator.spring.scm.git.GitIgnoreContributor;
 
 import java.io.IOException;
@@ -19,14 +23,21 @@ public class CustomProjectAssetGenerator implements ProjectAssetGenerator<Path> 
 
     @Override
     public Path generate(ProjectGenerationContext context) throws IOException {
+        CustomMavenBuild build = context.getBean(CustomMavenBuild.class);
         ProjectDescription description = context.getBean(ProjectDescription.class);
-        Path projectRoot = resolveProjectDirectoryFactory(context).createProjectDirectory(description);
-        Path projectDirectory = initializerProjectDirectory(projectRoot, description);
 
-        context.getBean(CustomMavenBuildContributor.class).contribute(projectDirectory);
-        context.getBean(GitIgnoreContributor.class).contribute(projectDirectory);
+        Path rootPath = resolveProjectDirectoryFactory(context).createProjectDirectory(description);
+        Path rootDir = initializerProjectDirectory(rootPath, description);
+        Path webDir = rootDir.resolve(build.webArtifactId());
 
-        return projectRoot;
+        context.getBean(CustomMavenBuildContributor.class).contribute(rootDir);
+        context.getBean(MainSourceCodeProjectContributor.class).contribute(webDir);
+        context.getBean(CustomTestSourceContributor.class).contribute(webDir);
+        context.getBean(CustomPackageInfoContributor.class).contribute(rootDir);
+
+        context.getBean(GitIgnoreContributor.class).contribute(rootDir);
+
+        return rootPath;
     }
 
     private ProjectDirectoryFactory resolveProjectDirectoryFactory(ProjectGenerationContext context) {

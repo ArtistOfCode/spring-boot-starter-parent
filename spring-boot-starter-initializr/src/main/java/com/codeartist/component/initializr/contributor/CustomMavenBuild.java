@@ -1,6 +1,5 @@
 package com.codeartist.component.initializr.contributor;
 
-import io.spring.initializr.generator.buildsystem.BuildItemResolver;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
 
 import java.util.List;
@@ -16,13 +15,6 @@ public class CustomMavenBuild extends MavenBuild {
     private MavenBuild apiMavenBuild;
     private MavenBuild webMavenBuild;
     private List<String> modules;
-
-    public CustomMavenBuild() {
-    }
-
-    public CustomMavenBuild(BuildItemResolver buildItemResolver) {
-        super(buildItemResolver);
-    }
 
     public MavenBuild getApiMavenBuild() {
         return this.apiMavenBuild;
