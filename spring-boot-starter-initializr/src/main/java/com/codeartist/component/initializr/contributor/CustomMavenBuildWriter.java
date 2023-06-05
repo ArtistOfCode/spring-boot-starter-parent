@@ -5,6 +5,7 @@ import io.spring.initializr.generator.buildsystem.maven.*;
 import io.spring.initializr.generator.io.IndentingWriter;
 import io.spring.initializr.generator.version.VersionProperty;
 import io.spring.initializr.generator.version.VersionReference;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Arrays;
@@ -25,15 +26,14 @@ import java.util.stream.Stream;
  */
 public class CustomMavenBuildWriter {
 
-    public void writeTo(IndentingWriter writer, MavenBuild build) {
+    public void writeTo(IndentingWriter writer, CustomMavenBuild build) {
         MavenBuildSettings settings = build.getSettings();
         writeProject(writer, () -> {
             writeParent(writer, build);
             writeProjectCoordinates(writer, settings);
             writePackaging(writer, settings);
-            writer.println();
             writeProjectName(writer, settings);
-            writer.println();
+            writeModules(writer, build.modules());
             writeProperties(writer, build.properties());
             writeDependencies(writer, build.dependencies());
             writeDependencyManagement(writer, build.boms());
@@ -86,11 +86,22 @@ public class CustomMavenBuildWriter {
         if (!"jar".equals(packaging)) {
             writeSingleElement(writer, "packaging", packaging);
         }
+        writer.println();
     }
 
     private void writeProjectName(IndentingWriter writer, MavenBuildSettings settings) {
         writeSingleElement(writer, "name", settings.getName());
         writeSingleElement(writer, "description", settings.getDescription());
+        writer.println();
+    }
+
+    private void writeModules(IndentingWriter writer, List<String> modules) {
+        if (CollectionUtils.isEmpty(modules)) {
+            return;
+        }
+        writer.println("<modules>");
+        writer.indented(() -> modules.forEach(module -> writeSingleElement(writer, "module", module)));
+        writer.println("</modules>");
     }
 
     private void writeProperties(IndentingWriter writer, PropertyContainer properties) {

@@ -1,6 +1,7 @@
 package com.codeartist.component.initializr.contributor;
 
 import io.spring.initializr.generator.buildsystem.BuildWriter;
+import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
 import io.spring.initializr.generator.io.IndentingWriter;
 import io.spring.initializr.generator.io.IndentingWriterFactory;
 import io.spring.initializr.generator.project.contributor.ProjectContributor;
@@ -30,8 +31,19 @@ public class CustomMavenBuildContributor implements BuildWriter, ProjectContribu
 
     @Override
     public void contribute(Path projectRoot) throws IOException {
-        Path pomFile = Files.createFile(projectRoot.resolve("pom.xml"));
-        writeBuild(Files.newBufferedWriter(pomFile));
+
+        Path rootPomFile = Files.createFile(projectRoot.resolve("pom.xml"));
+        writeBuild(Files.newBufferedWriter(rootPomFile));
+
+        build.setModules(null);
+
+        Path apiPath = initializerProjectDirectory(projectRoot, build.apiArtifactId());
+        Path apiPomFile = Files.createFile(apiPath.resolve("pom.xml"));
+        writeBuild(Files.newBufferedWriter(apiPomFile), build.getApiMavenBuild());
+
+        Path webPath = initializerProjectDirectory(projectRoot, build.webArtifactId());
+        Path webPomFile = Files.createFile(webPath.resolve("pom.xml"));
+        writeBuild(Files.newBufferedWriter(webPomFile), build.getWebMavenBuild());
     }
 
     @Override
@@ -39,5 +51,17 @@ public class CustomMavenBuildContributor implements BuildWriter, ProjectContribu
         try (IndentingWriter writer = this.indentingWriterFactory.createIndentingWriter("maven", out)) {
             this.buildWriter.writeTo(writer, this.build);
         }
+    }
+
+    public void writeBuild(Writer out, MavenBuild build) throws IOException {
+        try (IndentingWriter writer = this.indentingWriterFactory.createIndentingWriter("maven", out)) {
+            this.buildWriter.writeTo(writer, (CustomMavenBuild) build);
+        }
+    }
+
+    private Path initializerProjectDirectory(Path rootDir, String dir) throws IOException {
+        Path projectDirectory = rootDir.resolve(dir);
+        Files.createDirectories(projectDirectory);
+        return projectDirectory;
     }
 }
