@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
+ * application.yaml生成配置
+ *
  * @author J.N.AI
  * @date 2023/6/6
  */

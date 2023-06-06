@@ -5,7 +5,7 @@ import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
 import java.util.List;
 
 /**
- * 父Maven项目
+ * 自定义Maven项目构建实体
  *
  * @author J.N.AI
  * @date 2023/6/2

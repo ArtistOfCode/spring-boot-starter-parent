@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
+ * Maven项目生成配置
+ *
  * @author J.N.AI
  * @date 2023/6/5
  */

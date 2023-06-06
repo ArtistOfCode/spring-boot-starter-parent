@@ -6,7 +6,9 @@ import com.codeartist.component.initializr.customizer.MavenBuildCustomizer;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuildSystem;
 import io.spring.initializr.generator.condition.ConditionalOnBuildSystem;
 import io.spring.initializr.generator.io.IndentingWriterFactory;
+import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
+import io.spring.initializr.metadata.InitializrMetadata;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
@@ -19,6 +21,11 @@ import org.springframework.context.annotation.Primary;
 @ProjectGenerationConfiguration
 @ConditionalOnBuildSystem(MavenBuildSystem.ID)
 public class MavenProjectGenerationConfiguration {
+
+    @Bean
+    public MavenBuildCustomizer mavenBuildCustomizer(ProjectDescription description, InitializrMetadata metadata) {
+        return new MavenBuildCustomizer(description, metadata);
+    }
 
     @Bean
     @Primary

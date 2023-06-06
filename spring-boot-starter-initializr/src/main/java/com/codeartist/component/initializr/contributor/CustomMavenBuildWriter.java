@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * 父Maven项目
+ * 自定义Maven项目生成类
  *
  * @author J.N.AI
  * @date 2023/6/2

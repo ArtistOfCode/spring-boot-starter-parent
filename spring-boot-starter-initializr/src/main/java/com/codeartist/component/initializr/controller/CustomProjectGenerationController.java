@@ -9,6 +9,8 @@ import io.spring.initializr.web.project.WebProjectRequest;
 import java.util.Map;
 
 /**
+ * 自定义项目脚手架控制器
+ *
  * @author J.N.AI
  * @date 2023/6/4
  */

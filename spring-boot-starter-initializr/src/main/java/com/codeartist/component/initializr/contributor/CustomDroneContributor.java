@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
+ * .drone.yml生成配置
+ *
  * @author J.N.AI
  * @date 2023/6/5
  */
