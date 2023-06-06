@@ -16,7 +16,9 @@
 
 package com.codeartist.component.initializr.config;
 
+import com.codeartist.component.initializr.contributor.CustomDroneContributor;
 import com.codeartist.component.initializr.contributor.CustomMavenBuild;
+import com.codeartist.component.initializr.contributor.code.CustomApplicationYamlContributor;
 import com.codeartist.component.initializr.contributor.code.CustomPackageInfoContributor;
 import com.codeartist.component.initializr.contributor.code.CustomTestSourceContributor;
 import io.spring.initializr.generator.condition.ConditionalOnLanguage;
@@ -66,5 +68,25 @@ public class JavaProjectGenerationConfiguration {
     @Bean
     public CustomPackageInfoContributor customPackageInfoContributor(ProjectDescription description, CustomMavenBuild build) {
         return new CustomPackageInfoContributor(description, build);
+    }
+
+    @Bean
+    public CustomApplicationYamlContributor applicationYamlContributor() {
+        return new CustomApplicationYamlContributor();
+    }
+
+    @Bean
+    public CustomApplicationYamlContributor applicationLocalYamlContributor() {
+        return new CustomApplicationYamlContributor("application-local.yaml");
+    }
+
+    @Bean
+    public CustomApplicationYamlContributor bootstrapYamlContributor() {
+        return new CustomApplicationYamlContributor("bootstrap.yaml");
+    }
+
+    @Bean
+    public CustomDroneContributor customDroneContributor(ProjectDescription description) {
+        return new CustomDroneContributor(description);
     }
 }

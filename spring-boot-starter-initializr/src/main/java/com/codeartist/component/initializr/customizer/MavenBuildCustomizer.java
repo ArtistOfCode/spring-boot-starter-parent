@@ -33,14 +33,12 @@ public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
 
     @Override
     public void customize(CustomMavenBuild build) {
-        // 解析Parent 依赖
         InitializrConfiguration.Env.Maven maven = this.metadata.getConfiguration().getEnv().getMaven();
         String springBootVersion = description.getPlatformVersion().toString();
         InitializrConfiguration.Env.Maven.ParentPom parentPom = maven.resolveParentPom(springBootVersion);
 
         build.settings()
                 .parent(parentPom.getGroupId(), parentPom.getArtifactId(), parentPom.getVersion())
-                .group(description.getGroupId())
                 .artifact(description.getArtifactId())
                 .version(description.getVersion())
                 .packaging("pom")

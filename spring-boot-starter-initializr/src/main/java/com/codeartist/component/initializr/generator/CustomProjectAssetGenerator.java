@@ -1,7 +1,9 @@
 package com.codeartist.component.initializr.generator;
 
+import com.codeartist.component.initializr.contributor.CustomDroneContributor;
 import com.codeartist.component.initializr.contributor.CustomMavenBuild;
 import com.codeartist.component.initializr.contributor.CustomMavenBuildContributor;
+import com.codeartist.component.initializr.contributor.code.CustomApplicationYamlContributor;
 import com.codeartist.component.initializr.contributor.code.CustomPackageInfoContributor;
 import com.codeartist.component.initializr.contributor.code.CustomTestSourceContributor;
 import io.spring.initializr.generator.project.ProjectAssetGenerator;
@@ -34,6 +36,9 @@ public class CustomProjectAssetGenerator implements ProjectAssetGenerator<Path> 
         context.getBean(MainSourceCodeProjectContributor.class).contribute(webDir);
         context.getBean(CustomTestSourceContributor.class).contribute(webDir);
         context.getBean(CustomPackageInfoContributor.class).contribute(rootDir);
+        context.getBeanProvider(CustomApplicationYamlContributor.class).stream()
+                .forEach(contributor -> contributor.contribute(webDir));
+        context.getBean(CustomDroneContributor.class).contribute(rootDir);
 
         context.getBean(GitIgnoreContributor.class).contribute(rootDir);
 
