@@ -67,4 +67,9 @@ public interface GlobalConstants {
 
         private final Integer status;
     }
+
+    enum EntityEventType {
+
+        SAVE, UPDATE, DELETE;
+    }
 }

@@ -3,8 +3,10 @@ package com.codeartist.component.core.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.codeartist.component.core.entity.EntityEvent;
 import com.codeartist.component.core.entity.PageInfo;
 import com.codeartist.component.core.entity.PageParam;
+import com.codeartist.component.core.entity.enums.GlobalConstants.EntityEventType;
 import com.codeartist.component.core.util.SpringContext;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,13 +40,18 @@ public abstract class AbstractService<DO, VO, Param extends PageParam> implement
     public void save(Param param) {
         SpringContext.validate(param);
 
+        EntityEvent<DO> event = new EntityEvent<>();
         DO entity = getConverter().toDo(param);
         if (param.getId() != null) {
             getMapper().updateById(entity);
+            event.setType(EntityEventType.SAVE);
         } else {
             getMapper().insert(entity);
+            event.setType(EntityEventType.UPDATE);
         }
-        SpringContext.publishEvent(entity);
+        event.setEntity(entity);
+
+        SpringContext.publishEvent(event);
     }
 
     @Override
@@ -56,6 +63,6 @@ public abstract class AbstractService<DO, VO, Param extends PageParam> implement
         }
 
         getMapper().deleteById(id);
-        SpringContext.publishEvent(entity);
+        SpringContext.publishEvent(new EntityEvent<>(EntityEventType.DELETE, entity));
     }
 }
