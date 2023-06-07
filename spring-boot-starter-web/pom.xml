@@ -23,14 +23,6 @@
             <groupId>com.codeartist</groupId>
             <artifactId>spring-boot-starter-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.codeartist</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.codeartist</groupId>
-            <artifactId>spring-boot-starter-metric</artifactId>
-        </dependency>
         <!-- 第三方框架 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

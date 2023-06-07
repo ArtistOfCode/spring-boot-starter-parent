@@ -13,7 +13,6 @@
     <properties>
         <initializr-bom.version>0.10.0</initializr-bom.version>
         <!-- 项目配置 -->
-        <maven.package.skip>true</maven.package.skip>
         <maven.install.skip>true</maven.install.skip>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>

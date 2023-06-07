@@ -1,9 +1,11 @@
+global:
+  groupId: com.codeartist
 initializr:
   javaVersions:
     - id: 1.8
       default: true
   group-id:
-    value: com.codeartist
+    value: ${global.groupId}
   artifact-id:
     value: demo
   version:
@@ -38,7 +40,7 @@ initializr:
   env:
     maven:
       parent:
-        groupId: com.codeartist
+        groupId: ${global.groupId}
         artifactId: spring-boot-dependencies
         version: 1.0.0-SNAPSHOT
     repositories:
@@ -48,12 +50,23 @@ initializr:
       content:
         - name: Web
           id: web
+          groupId: ${global.groupId}
+          artifactId: spring-boot-starter-web
           description: 码匠 SpringBoot Web 依赖
     - name: 组件
       content:
         - name: Cache
           id: cache
+          groupId: ${global.groupId}
+          artifactId: spring-boot-starter-cache
           description: 码匠 SpringBoot 缓存组件依赖
         - name: MQ
           id: mq
+          groupId: ${global.groupId}
+          artifactId: spring-boot-starter-mq
           description: 码匠 SpringBoot 消息队列组件依赖
+        - name: Metric
+          id: metric
+          groupId: ${global.groupId}
+          artifactId: spring-boot-starter-metric
+          description: 码匠 SpringBoot 指标组件依赖
