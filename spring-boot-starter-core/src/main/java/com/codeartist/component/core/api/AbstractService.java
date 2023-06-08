@@ -40,14 +40,14 @@ public abstract class AbstractService<DO, VO, Param extends PageParam> implement
     public void save(Param param) {
         SpringContext.validate(param);
 
-        EntityEvent<DO> event = new EntityEvent<>();
+        EntityEvent<DO> event = new EntityEvent<>(this);
         DO entity = getConverter().toDo(param);
         if (param.getId() != null) {
             getMapper().updateById(entity);
-            event.setType(EntityEventType.SAVE);
+            event.setType(EntityEventType.UPDATE);
         } else {
             getMapper().insert(entity);
-            event.setType(EntityEventType.UPDATE);
+            event.setType(EntityEventType.SAVE);
         }
         event.setEntity(entity);
 
@@ -63,6 +63,6 @@ public abstract class AbstractService<DO, VO, Param extends PageParam> implement
         }
 
         getMapper().deleteById(id);
-        SpringContext.publishEvent(new EntityEvent<>(EntityEventType.DELETE, entity));
+        SpringContext.publishEvent(new EntityEvent<>(this, EntityEventType.DELETE, entity));
     }
 }

@@ -3,10 +3,7 @@ package com.codeartist.component.core.api;
 import com.codeartist.component.core.entity.PageInfo;
 import com.codeartist.component.core.entity.PageParam;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 抽象控制类
@@ -36,9 +33,9 @@ public abstract class AbstractController<VO, Param extends PageParam> {
         getService().save(param);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @ApiOperation("删除接口")
-    public void delete(Long id) {
+    public void delete(@PathVariable Long id) {
         getService().delete(id);
     }
 }

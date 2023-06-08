@@ -28,6 +28,10 @@
         </dependency>
         <dependency>
             <groupId>com.codeartist</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.codeartist</groupId>
             <artifactId>spring-boot-starter-mq</artifactId>
         </dependency>
         <dependency>

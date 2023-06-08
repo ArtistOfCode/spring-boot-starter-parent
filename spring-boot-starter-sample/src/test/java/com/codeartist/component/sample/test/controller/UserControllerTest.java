@@ -6,8 +6,7 @@ import com.codeartist.component.sample.entity.param.UserParam;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,6 +28,16 @@ class UserControllerTest extends AbstractSpringRunnerTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(JSON.toJSONString(param))
                 )
+                .andExpect(status().isOk());
+
+        param.setId(5L);
+        mockMvc.perform(post("/api/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JSON.toJSONString(param))
+                )
+                .andExpect(status().isOk());
+
+        mockMvc.perform(delete("/api/user/5"))
                 .andExpect(status().isOk());
     }
 
