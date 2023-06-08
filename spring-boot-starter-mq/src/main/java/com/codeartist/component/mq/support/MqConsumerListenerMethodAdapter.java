@@ -16,9 +16,9 @@ import java.lang.reflect.Method;
  */
 public class MqConsumerListenerMethodAdapter extends ApplicationListenerMethodAdapter {
 
-    private final MqContext<Void> annotation;
+    private final MqContext annotation;
 
-    public MqConsumerListenerMethodAdapter(String beanName, Class<?> targetClass, Method method, MqContext<Void> annotation) {
+    public MqConsumerListenerMethodAdapter(String beanName, Class<?> targetClass, Method method, MqContext annotation) {
         super(beanName, targetClass, method);
         this.annotation = annotation;
     }
@@ -34,8 +34,9 @@ public class MqConsumerListenerMethodAdapter extends ApplicationListenerMethodAd
 
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        if (shouldHandle((MqConsumerEvent<?>) event)) {
-            Object result = doInvoke(event.getSource());
+        MqContext mqContext = ((MqConsumerEvent) event).getMqContext();
+        if (shouldHandle(mqContext)) {
+            Object result = doInvoke(mqContext);
             if (result != null) {
                 handleResult(result);
             }
@@ -45,9 +46,9 @@ public class MqConsumerListenerMethodAdapter extends ApplicationListenerMethodAd
     /**
      * 监听器执行条件
      */
-    private <T> boolean shouldHandle(MqConsumerEvent<T> event) {
-        return annotation.getType().equals(event.getType())
-                && annotation.getTopic().equals(event.getTopic())
-                && annotation.getTag().equals(event.getTag());
+    private <T> boolean shouldHandle(MqContext mqContext) {
+        return annotation.getType().equals(mqContext.getType())
+                && annotation.getTopic().equals(mqContext.getTopic())
+                && annotation.getTag().equals(mqContext.getTag());
     }
 }

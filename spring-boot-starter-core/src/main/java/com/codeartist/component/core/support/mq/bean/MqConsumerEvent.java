@@ -1,7 +1,8 @@
 package com.codeartist.component.core.support.mq.bean;
 
-import com.codeartist.component.core.support.mq.bean.MqContext;
-import com.codeartist.component.core.support.mq.bean.MqType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -10,28 +11,15 @@ import org.springframework.context.ApplicationEvent;
  * @author 艾江南
  * @date 2021/7/21
  */
-public class MqConsumerEvent<T> extends ApplicationEvent {
+@Getter
+@Setter
+@JsonIgnoreProperties({"source", "timestamp"})
+public class MqConsumerEvent extends ApplicationEvent {
 
-    private final MqType type;
-    private final String topic;
-    private final String tag;
+    private final MqContext mqContext;
 
-    public MqConsumerEvent(MqContext<T> source) {
+    public MqConsumerEvent(Object source, MqContext mqContext) {
         super(source);
-        this.type = source.getType();
-        this.topic = source.getTopic();
-        this.tag = source.getTag();
-    }
-
-    public MqType getType() {
-        return this.type;
-    }
-
-    public String getTopic() {
-        return this.topic;
-    }
-
-    public String getTag() {
-        return this.tag;
+        this.mqContext = mqContext;
     }
 }

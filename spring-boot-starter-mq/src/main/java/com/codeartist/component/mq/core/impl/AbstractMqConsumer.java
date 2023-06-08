@@ -1,26 +1,20 @@
 package com.codeartist.component.mq.core.impl;
 
-import com.codeartist.component.core.support.serializer.TypeRef;
-import com.codeartist.component.core.util.JSON;
+import com.codeartist.component.core.support.mq.bean.MqConsumerEvent;
 import com.codeartist.component.core.support.mq.bean.MqContext;
-import com.codeartist.component.mq.bean.MqProperties;
 import com.codeartist.component.core.support.mq.bean.MqType;
+import com.codeartist.component.core.util.SpringContext;
+import com.codeartist.component.mq.bean.MqProperties;
 import com.codeartist.component.mq.core.MqConsumer;
 import com.codeartist.component.mq.exception.MqException;
 import com.codeartist.component.mq.metric.MqMetrics;
-import com.codeartist.component.core.support.mq.bean.MqConsumerEvent;
 import com.codeartist.component.mq.support.MqEventListenerFactory;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.util.StringUtils;
-
-import java.lang.reflect.Type;
 
 /**
  * MQ消费者抽象
@@ -31,17 +25,17 @@ import java.lang.reflect.Type;
 @Slf4j
 @Getter
 @RequiredArgsConstructor
-public abstract class AbstractMqConsumer implements MqConsumer, ApplicationContextAware {
+public abstract class AbstractMqConsumer implements MqConsumer {
 
     private final MqType type;
 
-    private ApplicationContext applicationContext;
+    @Value("${spring.application.name}")
+    protected String applicationName;
 
     @Autowired
     private MqMetrics mqMetrics;
     @Autowired
     private MqEventListenerFactory factory;
-
     @Autowired
     protected MqProperties properties;
     @Autowired
@@ -51,7 +45,7 @@ public abstract class AbstractMqConsumer implements MqConsumer, ApplicationConte
 
     protected abstract void doStop();
 
-    protected abstract void doRegister(MqContext<Void> listener);
+    protected abstract void doRegister(MqContext listener);
 
     @Override
     public void start() {
@@ -67,36 +61,14 @@ public abstract class AbstractMqConsumer implements MqConsumer, ApplicationConte
     }
 
     @Override
-    public <T> void doPublish(MqContext<T> message) {
+    public void doPublish(MqContext message) {
         try {
-            MqConsumerEvent<T> event = new MqConsumerEvent<>(message);
-            applicationContext.publishEvent(event);
+            MqConsumerEvent event = new MqConsumerEvent(this, message);
+            SpringContext.publishEvent(event);
             mqMetrics.consumer(message.getType(), message.getGroup(), message.getTopic(), event.getTimestamp());
         } catch (Exception e) {
             mqMetrics.consumerError(message.getType(), message.getGroup(), message.getTopic());
             throw new MqException(message, "MQ consumer error.", e);
         }
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-    protected String getApplicationName() {
-        return applicationContext.getEnvironment().getProperty("spring.application.name");
-    }
-
-    protected <T> T deserialize(String data, Type type) {
-        if (StringUtils.isEmpty(data)) {
-            return null;
-        }
-
-        return JSON.parseObject(data, new TypeRef<T>() {
-            @Override
-            public Type getType() {
-                return type;
-            }
-        });
     }
 }

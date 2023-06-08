@@ -1,12 +1,10 @@
 package com.codeartist.component.sample.consumer;
 
-import com.codeartist.component.core.util.JSON;
 import com.codeartist.component.core.support.mq.annotatioin.RedisMqConsumer;
 import com.codeartist.component.core.support.mq.bean.MqContext;
 import com.codeartist.component.core.support.mq.bean.MqMessage;
 import com.codeartist.component.core.support.mq.bean.MqType;
 import com.codeartist.component.sample.entity.Example;
-import com.codeartist.component.sample.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -23,12 +21,12 @@ import java.math.BigDecimal;
 public class RedisMqConsumers {
 
     @RedisMqConsumer("TEST_TOPIC")
-    public MqMessage consumer1(MqContext<User> message) {
+    public MqMessage consumer1(MqContext message) {
         String group = message.getGroup();
         String topic = message.getTopic();
         String tag = message.getTag();
-        User body = message.getBody();
-        log.info("Consumer1 message at group:{}, topic:{}, tag:{}\n{}", group, topic, tag, JSON.toJSONString(body));
+        String body = message.getRecord();
+        log.info("Consumer1 message at group:{}, topic:{}, tag:{}\n{}", group, topic, tag, body);
 
         Example example = new Example();
         example.setName("Example");
@@ -43,11 +41,11 @@ public class RedisMqConsumers {
     }
 
     @RedisMqConsumer("TEST_TOPIC_1")
-    public void consumer2(MqContext<Example> message) {
+    public void consumer2(MqContext message) {
         String group = message.getGroup();
         String topic = message.getTopic();
         String tag = message.getTag();
-        Example body = message.getBody();
-        log.info("Consumer2 message at group:{}, topic:{}, tag:{}\n{}", group, topic, tag, JSON.toJSONString(body));
+        String body = message.getRecord();
+        log.info("Consumer2 message at group:{}, topic:{}, tag:{}\n{}", group, topic, tag, body);
     }
 }

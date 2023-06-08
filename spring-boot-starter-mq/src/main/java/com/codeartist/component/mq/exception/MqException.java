@@ -16,18 +16,18 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 public class MqException extends RuntimeException {
 
-    private MqContext<?> mqContext;
+    private MqContext mqContext;
 
     public MqException() {
         super();
     }
 
-    public MqException(MqContext<?> mqContext, String message) {
+    public MqException(MqContext mqContext, String message) {
         super(message);
         this.mqContext = mqContext;
     }
 
-    public MqException(MqContext<?> mqContext, String message, Throwable cause) {
+    public MqException(MqContext mqContext, String message, Throwable cause) {
         super(message, cause);
         this.mqContext = mqContext;
     }

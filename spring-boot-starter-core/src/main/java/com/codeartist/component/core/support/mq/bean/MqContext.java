@@ -2,8 +2,6 @@ package com.codeartist.component.core.support.mq.bean;
 
 import lombok.*;
 
-import java.lang.reflect.Type;
-
 /**
  * MQ消息实体
  *
@@ -15,13 +13,12 @@ import java.lang.reflect.Type;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MqContext<T> {
+public class MqContext {
 
     private MqType type;
     private MqHeaders headers;
     private String group;
     private String topic;
     private String tag;
-    private T body;
-    private Type bodyType;
+    private String record;
 }

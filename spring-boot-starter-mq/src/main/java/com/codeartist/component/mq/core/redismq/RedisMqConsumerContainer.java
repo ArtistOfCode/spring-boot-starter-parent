@@ -64,7 +64,7 @@ public class RedisMqConsumerContainer extends AbstractMqConsumer {
     }
 
     @Override
-    protected void doRegister(MqContext<Void> listener) {
+    protected void doRegister(MqContext listener) {
         RedisMqListener redisMqListener = new RedisMqListener(listener);
 
         String group = listener.getGroup();
@@ -141,7 +141,7 @@ public class RedisMqConsumerContainer extends AbstractMqConsumer {
     @RequiredArgsConstructor
     private class RedisMqListener implements StreamListener<String, MapRecord<String, String, String>> {
 
-        private final MqContext<Void> listener;
+        private final MqContext listener;
 
         @Override
         public void onMessage(MapRecord<String, String, String> message) {
@@ -155,13 +155,13 @@ public class RedisMqConsumerContainer extends AbstractMqConsumer {
                 headers.putAll(value);
             }
 
-            MqContext<?> mqContext = MqContext.builder()
+            MqContext mqContext = MqContext.builder()
                     .type(listener.getType())
                     .headers(headers)
                     .group(listener.getGroup())
                     .topic(message.getStream())
                     .tag(MqHeaders.DEFAULT_TAG)
-                    .body(deserialize(data, listener.getBodyType()))
+                    .record(data)
                     .build();
 
             doPublish(mqContext);

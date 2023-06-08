@@ -12,7 +12,7 @@ import org.springframework.boot.ApplicationRunner;
  */
 public interface MqConsumer extends MqLifecycle, ApplicationRunner {
 
-    <T> void doPublish(MqContext<T> message);
+    void doPublish(MqContext message);
 
     @Override
     default void run(ApplicationArguments args) {
