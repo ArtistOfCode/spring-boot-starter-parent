@@ -69,7 +69,6 @@ public interface GlobalConstants {
     }
 
     enum EntityEventType {
-
-        SAVE, UPDATE, DELETE;
+        SAVE, UPDATE, DELETE
     }
 }

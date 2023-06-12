@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.codeartist.component.core.exception.BadRequestException;
 import com.codeartist.component.core.util.Assert;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,10 +21,12 @@ public class PageParam extends IdParam {
     /**
      * 页码
      */
+    @JsonIgnore
     private Integer pageNo = 1;
     /**
      * 每页记录数
      */
+    @JsonIgnore
     private Integer pageSize = 10;
 
     public <T> IPage<T> page() {

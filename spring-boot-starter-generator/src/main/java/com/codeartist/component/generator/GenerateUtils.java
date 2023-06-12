@@ -73,28 +73,34 @@ public final class GenerateUtils {
                         // Controller
                         .controllerBuilder()
                         .enableRestStyle()
+                        .enableFileOverride()
                         // Service
                         .serviceBuilder()
                         .formatServiceFileName("%sService")
                         .formatServiceImplFileName("%sService")
+                        .enableFileOverride()
                         // Mapper
                         .mapperBuilder()
-                        .enableBaseResultMap())
+                        .enableBaseResultMap()
+                        .enableFileOverride())
                 .injectionConfig(builder -> builder
                         // vo
                         .customFile(build -> build.fileName("VO.java")
                                 .templatePath("tpl/entity_vo.java.ftl")
                                 .packageName("entity/vo")
+                                .enableFileOverride()
                                 .build())
                         // param
                         .customFile(build -> build.fileName("Param.java")
                                 .templatePath("tpl/entity_param.java.ftl")
                                 .packageName("entity/param")
+                                .enableFileOverride()
                                 .build())
                         // converter
                         .customFile(build -> build.fileName("Converter.java")
                                 .templatePath("tpl/entity_converter.java.ftl")
                                 .packageName("entity/converter")
+                                .enableFileOverride()
                                 .build())
                 )
                 .templateEngine(new FreemarkerTemplateEngine())
@@ -103,9 +109,16 @@ public final class GenerateUtils {
 
     private static void loadDatasource(GenerateProperties properties) {
         YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-        ClassPathResource resource = new ClassPathResource("application-local.yaml");
-        yaml.setResources(resource);
-        Properties prop = yaml.getObject();
+        Properties prop;
+        try {
+            ClassPathResource resource = new ClassPathResource("application-local.yaml");
+            yaml.setResources(resource);
+            prop = yaml.getObject();
+        } catch (IllegalStateException e) {
+            ClassPathResource resource = new ClassPathResource("bootstrap.yaml");
+            yaml.setResources(resource);
+            prop = yaml.getObject();
+        }
 
         if (prop == null) {
             throw new NullPointerException("Properties is null.");

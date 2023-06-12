@@ -6,6 +6,7 @@ import com.codeartist.component.cache.bean.CacheProperties;
 import com.codeartist.component.cache.metric.CacheMetrics;
 import com.codeartist.component.core.support.metric.Metrics;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Import;
  * @date 2019/4/19
  */
 @SpringBootConfiguration
+@ConditionalOnClass(CacheProperties.class)
 @EnableConfigurationProperties(CacheProperties.class)
 @Import({RedisAutoConfiguration.class})
 public class CacheAutoConfiguration {

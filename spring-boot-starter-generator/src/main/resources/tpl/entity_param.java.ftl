@@ -3,7 +3,7 @@ package ${package.Entity}.param;
 <#list table.importPackages as pkg>
 import ${pkg};
 </#list>
-import com.idatafun.component.core.entity.PageParam;
+import com.codeartist.component.core.entity.PageParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
