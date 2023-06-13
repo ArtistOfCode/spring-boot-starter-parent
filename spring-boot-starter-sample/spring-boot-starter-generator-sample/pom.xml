@@ -5,11 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.codeartist</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
+        <artifactId>spring-boot-starter-sample</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
     <artifactId>spring-boot-starter-generator-sample</artifactId>
+
+    <properties>
+        <!-- 项目配置 -->
+        <maven.package.skip>true</maven.package.skip>
+        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <dependency>
