@@ -36,7 +36,7 @@ public final class GenerateUtils {
         }
 
         if (StringUtils.isEmpty(properties.getPackageName())) {
-            properties.setPackageName("com.idatafun");
+            properties.setPackageName("com.codeartist");
         }
 
         FastAutoGenerator.create(new DataSourceConfig.Builder(properties.getUrl(), properties.getUsername(), properties.getPassword())

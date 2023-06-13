@@ -20,4 +20,10 @@
         <module>spring-boot-starter-generator-sample</module>
     </modules>
 
+    <properties>
+        <!-- 项目配置 -->
+        <maven.package.skip>true</maven.package.skip>
+        <maven.install.skip>true</maven.install.skip>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 </project>

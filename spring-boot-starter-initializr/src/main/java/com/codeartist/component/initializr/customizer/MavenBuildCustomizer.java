@@ -39,6 +39,7 @@ public class MavenBuildCustomizer implements BuildCustomizer<CustomMavenBuild> {
 
         build.settings()
                 .parent(parentPom.getGroupId(), parentPom.getArtifactId(), parentPom.getVersion())
+                .group(description.getGroupId())
                 .artifact(description.getArtifactId())
                 .version(description.getVersion())
                 .packaging("pom")

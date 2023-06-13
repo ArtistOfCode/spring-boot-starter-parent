@@ -41,7 +41,7 @@ initializr:
     maven:
       parent:
         groupId: ${global.groupId}
-        artifactId: spring-boot-dependencies
+        artifactId: spring-boot-starter-parent
         version: 1.0.0-SNAPSHOT
     repositories:
       - name:

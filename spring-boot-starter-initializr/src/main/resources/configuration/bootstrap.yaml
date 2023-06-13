@@ -1,3 +1,7 @@
 # Spring
 spring.profiles.active: local
-spring.application.name: # TODO
+spring.application.name: # 应用名称
+# Spring Cloud Consul
+spring.cloud.consul.host: consul.test.idatafun.com
+spring.cloud.consul.port: 80
+spring.cloud.consul.config.enabled: false
