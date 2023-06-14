@@ -21,7 +21,10 @@ Spring Boot 框架的码匠实现
 - spring-boot-autoconfigure：自动配置
 - spring-boot-starter-core：核心组件
 - spring-boot-starter-cache：缓存组件
+- spring-boot-starter-mq：消息队列组件
+- spring-boot-starter-metric：指标组件
 - spring-boot-starter-web：Web组件
+- spring-boot-starter-initializr：Spring脚手架
 - spring-boot-starter-sample：示例项目
 
 ### RELEASE

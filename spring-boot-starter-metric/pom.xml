@@ -14,7 +14,7 @@
     <description>指标监控</description>
 
     <dependencies>
-        <!-- 得方框架 -->
+        <!-- 码匠框架 -->
         <dependency>
             <groupId>com.codeartist</groupId>
             <artifactId>spring-boot-starter-core</artifactId>

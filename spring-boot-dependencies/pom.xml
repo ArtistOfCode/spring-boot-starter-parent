@@ -17,14 +17,16 @@
     <description>码匠企业级POM</description>
 
     <properties>
-        <!-- 得方框架 -->
+        <!-- 码匠框架 -->
         <spring-boot-autoconfigure.version>1.0.0-SNAPSHOT</spring-boot-autoconfigure.version>
         <spring-boot-starter-core.version>1.0.0-SNAPSHOT</spring-boot-starter-core.version>
         <spring-boot-starter-cache.version>1.0.0-SNAPSHOT</spring-boot-starter-cache.version>
         <spring-boot-starter-mq.version>1.0.0-SNAPSHOT</spring-boot-starter-mq.version>
         <spring-boot-starter-metric.version>1.0.0-SNAPSHOT</spring-boot-starter-metric.version>
         <spring-boot-starter-web.version>1.0.0-SNAPSHOT</spring-boot-starter-web.version>
+        <spring-boot-starter-generator.version>1.0.0-SNAPSHOT</spring-boot-starter-generator.version>
         <!-- 第三方框架 -->
+        <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
         <spring-cloud-dependencies.version>Hoxton.RELEASE</spring-cloud-dependencies.version>
         <mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
         <!-- 第三方工具 -->
@@ -46,7 +48,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- 得方框架 -->
+            <!-- 码匠框架 -->
             <dependency>
                 <groupId>com.codeartist</groupId>
                 <artifactId>spring-boot-autoconfigure</artifactId>
@@ -77,6 +79,12 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot-starter-web.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.codeartist</groupId>
+                <artifactId>spring-boot-starter-generator</artifactId>
+                <version>${spring-boot-starter-generator.version}</version>
+                <scope>test</scope>
+            </dependency>
             <!-- 第三方框架 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -89,6 +97,18 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <!-- 测试框架 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!-- 第三方工具 -->
             <dependency>

@@ -19,7 +19,7 @@
     </properties>
 
     <dependencies>
-        <!-- 得方框架 -->
+        <!-- 码匠框架 -->
         <dependency>
             <groupId>com.codeartist</groupId>
             <artifactId>spring-boot-starter-core</artifactId>
@@ -41,12 +41,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!-- 第三方工具 -->
         <dependency>
