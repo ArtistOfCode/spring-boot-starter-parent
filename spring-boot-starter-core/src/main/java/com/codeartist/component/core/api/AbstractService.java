@@ -8,6 +8,8 @@ import com.codeartist.component.core.entity.PageInfo;
 import com.codeartist.component.core.entity.PageParam;
 import com.codeartist.component.core.entity.enums.GlobalConstants.EntityEventType;
 import com.codeartist.component.core.util.SpringContext;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -16,11 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author J.N.AI
  * @date 2023/6/1
  */
+@Getter
+@RequiredArgsConstructor
 public abstract class AbstractService<DO, VO, Param extends PageParam> implements BaseService<VO, Param> {
 
-    protected abstract BaseMapper<DO> getMapper();
-
-    protected abstract BaseConverter<DO, Param, VO> getConverter();
+    private final BaseMapper<DO> mapper;
+    private final BaseConverter<DO, Param, VO> converter;
 
     @Override
     public VO get(Long id) {

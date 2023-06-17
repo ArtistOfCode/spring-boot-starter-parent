@@ -3,6 +3,8 @@ package com.codeartist.component.core.api;
 import com.codeartist.component.core.entity.PageInfo;
 import com.codeartist.component.core.entity.PageParam;
 import io.swagger.annotations.ApiOperation;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
  * @author J.N.AI
  * @date 2023/6/1
  */
+@Getter
+@RequiredArgsConstructor
 public abstract class AbstractController<VO, Param extends PageParam> {
 
-    protected abstract BaseService<VO, Param> getService();
+    private final BaseService<VO, Param> service;
 
     @GetMapping
     @ApiOperation("查询详情接口")
