@@ -16,7 +16,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PageParam extends IdParam {
+public abstract class PageParam implements IdParam {
 
     /**
      * 页码

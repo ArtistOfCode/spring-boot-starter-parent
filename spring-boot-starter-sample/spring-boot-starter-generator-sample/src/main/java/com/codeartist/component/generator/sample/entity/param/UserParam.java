@@ -1,14 +1,12 @@
 package com.codeartist.component.generator.sample.entity.param;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.time.LocalDateTime;
-
 import com.codeartist.component.core.entity.PageParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 /**
  * 用户基本信息

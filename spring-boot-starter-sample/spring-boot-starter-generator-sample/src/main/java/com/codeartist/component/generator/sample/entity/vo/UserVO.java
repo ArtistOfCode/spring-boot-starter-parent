@@ -1,9 +1,7 @@
 package com.codeartist.component.generator.sample.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.time.LocalDateTime;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
