@@ -73,34 +73,34 @@ public final class GenerateUtils {
                         // Controller
                         .controllerBuilder()
                         .enableRestStyle()
-                        .enableFileOverride()
+                        // .enableFileOverride()
                         // Service
                         .serviceBuilder()
                         .formatServiceFileName("%sService")
                         .formatServiceImplFileName("%sService")
-                        .enableFileOverride()
+                        // .enableFileOverride()
                         // Mapper
                         .mapperBuilder()
-                        .enableBaseResultMap()
-                        .enableFileOverride())
+                        .enableBaseResultMap())
+                // .enableFileOverride())
                 .injectionConfig(builder -> builder
                         // vo
                         .customFile(build -> build.fileName("VO.java")
                                 .templatePath("tpl/entity_vo.java.ftl")
                                 .packageName("entity/vo")
-                                .enableFileOverride()
+                                // .enableFileOverride()
                                 .build())
                         // param
                         .customFile(build -> build.fileName("Param.java")
                                 .templatePath("tpl/entity_param.java.ftl")
                                 .packageName("entity/param")
-                                .enableFileOverride()
+                                // .enableFileOverride()
                                 .build())
                         // converter
                         .customFile(build -> build.fileName("Converter.java")
                                 .templatePath("tpl/entity_converter.java.ftl")
                                 .packageName("entity/converter")
-                                .enableFileOverride()
+                                // .enableFileOverride()
                                 .build())
                 )
                 .templateEngine(new FreemarkerTemplateEngine())
