@@ -3,6 +3,7 @@ package com.codeartist.component.core.web.handler;
 import com.codeartist.component.core.api.ICode;
 import com.codeartist.component.core.entity.ResponseError;
 import com.codeartist.component.core.entity.enums.ApiErrorCode;
+import com.codeartist.component.core.entity.enums.ApiErrorCode.ApiHttpStatus;
 import com.codeartist.component.core.entity.enums.Environments;
 import com.codeartist.component.core.exception.BusinessException;
 import com.codeartist.component.core.exception.FeignException;
@@ -39,12 +40,12 @@ public class ServerExceptionHandler {
         if (code == null) {
             log.warn("Business exception DO NOT define error code.", e);
             return ResponseEntity
-                    .status(HttpStatus.SERVICE_UNAVAILABLE)
-                    .body(new ResponseError(HttpStatus.SERVICE_UNAVAILABLE.value(), e.getMessage()));
+                    .status(ApiHttpStatus.BUSINESS_WARNING.getValue())
+                    .body(new ResponseError(ApiHttpStatus.BUSINESS_WARNING.getValue(), e.getMessage()));
         }
         log.warn("Business exception: {} {}", code.getCode(), code.getName());
         return ResponseEntity
-                .status(HttpStatus.SERVICE_UNAVAILABLE)
+                .status(ApiHttpStatus.BUSINESS_WARNING.getValue())
                 .body(new ResponseError(code));
     }
 

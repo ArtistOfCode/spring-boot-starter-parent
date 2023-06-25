@@ -1,11 +1,11 @@
 package com.codeartist.component.core.web.handler;
 
 import com.codeartist.component.core.entity.ResponseError;
+import com.codeartist.component.core.entity.enums.ApiErrorCode.ApiHttpStatus;
 import com.codeartist.component.core.exception.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -58,6 +58,8 @@ public class ClientExceptionHandler {
 
     private ResponseEntity<ResponseError> badRequest(BadRequestException e) {
         log.warn("Client exception: {}", e.getMessage());
-        return ResponseEntity.badRequest().body(new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+        return ResponseEntity
+                .status(ApiHttpStatus.CLIENT_WARNING.getValue())
+                .body(new ResponseError(ApiHttpStatus.CLIENT_WARNING.getValue(), e.getMessage()));
     }
 }

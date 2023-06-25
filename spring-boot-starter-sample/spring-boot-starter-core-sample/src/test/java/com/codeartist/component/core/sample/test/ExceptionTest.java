@@ -1,9 +1,9 @@
 package com.codeartist.component.core.sample.test;
 
 import com.codeartist.component.core.entity.enums.ApiErrorCode;
+import com.codeartist.component.core.entity.enums.ApiErrorCode.ApiHttpStatus;
 import com.codeartist.component.core.support.test.AbstractSpringRunnerTests;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -20,16 +20,16 @@ public class ExceptionTest extends AbstractSpringRunnerTests {
     @Test
     void client() throws Exception {
         mockMvc.perform(get("/api/exception/client"))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value(HttpStatus.BAD_REQUEST.value()))
+                .andExpect(status().is(ApiHttpStatus.CLIENT_WARNING.getValue()))
+                .andExpect(jsonPath("$.code").value(ApiHttpStatus.CLIENT_WARNING.getValue()))
                 .andDo(print());
     }
 
     @Test
     void business() throws Exception {
         mockMvc.perform(get("/api/exception/business"))
-                .andExpect(status().isServiceUnavailable())
-                .andExpect(jsonPath("$.code").value(HttpStatus.SERVICE_UNAVAILABLE.value()))
+                .andExpect(status().is(ApiHttpStatus.BUSINESS_WARNING.getValue()))
+                .andExpect(jsonPath("$.code").value(ApiHttpStatus.BUSINESS_WARNING.getValue()))
                 .andDo(print());
     }
 

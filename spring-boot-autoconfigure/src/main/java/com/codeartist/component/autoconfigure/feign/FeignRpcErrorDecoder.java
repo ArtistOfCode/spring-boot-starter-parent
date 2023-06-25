@@ -1,9 +1,14 @@
 package com.codeartist.component.autoconfigure.feign;
 
+import com.codeartist.component.core.entity.ResponseError;
+import com.codeartist.component.core.entity.enums.ApiErrorCode.ApiHttpStatus;
+import com.codeartist.component.core.exception.FeignException;
+import com.codeartist.component.core.util.JSON;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StreamUtils;
 
 /**
  * Feign监控异常处理
@@ -21,18 +26,17 @@ public class FeignRpcErrorDecoder extends ErrorDecoder.Default {
      */
     @Override
     public Exception decode(String methodKey, Response response) {
-//        if (response.status() == HttpStatus.BAD_REQUEST.value() ||
-//                response.status() == HttpStatus.SERVICE_UNAVAILABLE.value()) {
-//            try {
-//                byte[] body = StreamUtils.copyToByteArray(response.body().asInputStream());
-//                ResponseError responseError = JSON.parseObject(body, ResponseError.class);
-//                log.warn("{}: code:{}, message:{}", methodKey, responseError.getCode(), responseError.getMessage());
-//                return new FeignException(responseError);
-//            } catch (Exception e) {
-//                log.error("Feign exception convert error.", e);
-//                return super.decode(methodKey, response);
-//            }
-//        }
+        if (ApiHttpStatus.in(response.status())) {
+            try {
+                byte[] body = StreamUtils.copyToByteArray(response.body().asInputStream());
+                ResponseError responseError = JSON.parseObject(body, ResponseError.class);
+                log.warn("{}: code:{}, message:{}", methodKey, responseError.getCode(), responseError.getMessage());
+                return new FeignException(responseError);
+            } catch (Exception e) {
+                log.error("Feign exception convert error.", e);
+                return super.decode(methodKey, response);
+            }
+        }
         return super.decode(methodKey, response);
     }
 }

@@ -23,4 +23,19 @@ public enum ApiErrorCode implements ICode {
 
     private final int code;
     private final String name;
+
+    @Getter
+    @AllArgsConstructor
+    public enum ApiHttpStatus {
+        CLIENT_WARNING(499, "Client warning."),
+        BUSINESS_WARNING(599, "Business warning."),
+        ;
+
+        private final int value;
+        private final String reasonPhrase;
+
+        public static boolean in(int status) {
+            return status == CLIENT_WARNING.getValue() || status == BUSINESS_WARNING.getValue();
+        }
+    }
 }
