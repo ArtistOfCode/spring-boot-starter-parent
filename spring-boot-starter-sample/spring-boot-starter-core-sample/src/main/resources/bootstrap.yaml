@@ -1,0 +1,6 @@
+# Spring
+spring.output.ansi.enabled: ALWAYS
+spring.profiles.active: local
+spring.application.name: core
+# Spring Cloud Consul
+spring.cloud.consul.enabled: false

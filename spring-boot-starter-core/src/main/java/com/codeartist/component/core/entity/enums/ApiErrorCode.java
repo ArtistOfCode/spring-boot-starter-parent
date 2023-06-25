@@ -14,11 +14,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ApiErrorCode implements ICode {
 
-    EXPIRE_AUTH_ERROR(401, "请重新登录"),
-    CAPTCHA_VERIFY_ERROR(401, "验证码校验异常"),
-    PRIVATE_API_ERROR(403, "内部接口禁止访问"),
-    SERVICE_BUSY(503, "请求正在处理中，请稍后"),
-    SERVICE_ERROR(500, "服务器开小差"),
+    EXPIRE_AUTH_ERROR(100001, "请重新登录"),
+    CAPTCHA_VERIFY_ERROR(100002, "验证码校验异常"),
+    PRIVATE_API_ERROR(100003, "内部接口禁止访问"),
+    SERVICE_BUSY(100004, "请求正在处理中，请稍后"),
+    SERVICE_ERROR(100005, "服务器开小差"),
     ;
 
     private final int code;

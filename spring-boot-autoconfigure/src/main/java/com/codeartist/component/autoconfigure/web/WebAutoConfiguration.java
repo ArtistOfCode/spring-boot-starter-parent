@@ -14,7 +14,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -37,8 +36,8 @@ public class WebAutoConfiguration {
     }
 
     @Bean
-    public ServerExceptionHandler serverExceptionHandler(Metrics metrics, Environment environment) {
-        return new ServerExceptionHandler(metrics, environment);
+    public ServerExceptionHandler serverExceptionHandler(Metrics metrics) {
+        return new ServerExceptionHandler(metrics);
     }
 
     @Bean

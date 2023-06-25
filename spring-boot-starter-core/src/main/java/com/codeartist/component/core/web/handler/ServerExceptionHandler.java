@@ -1,5 +1,6 @@
 package com.codeartist.component.core.web.handler;
 
+import com.codeartist.component.core.api.ICode;
 import com.codeartist.component.core.entity.ResponseError;
 import com.codeartist.component.core.entity.enums.ApiErrorCode;
 import com.codeartist.component.core.entity.enums.Environments;
@@ -9,7 +10,6 @@ import com.codeartist.component.core.support.metric.Metrics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,17 +32,20 @@ import javax.servlet.http.HttpServletRequest;
 public class ServerExceptionHandler {
 
     private final Metrics metrics;
-    private final Environment environment;
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ResponseError> businessException(BusinessException e) {
-        log.warn("Business exception: {}", e.getMessage());
+        ICode code = e.getCode();
+        if (code == null) {
+            log.warn("Business exception DO NOT define error code.", e);
+            return ResponseEntity
+                    .status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body(new ResponseError(HttpStatus.SERVICE_UNAVAILABLE.value(), e.getMessage()));
+        }
+        log.warn("Business exception: {} {}", code.getCode(), code.getName());
         return ResponseEntity
                 .status(HttpStatus.SERVICE_UNAVAILABLE)
-                .body(e.getCode() == null ?
-                        new ResponseError(HttpStatus.SERVICE_UNAVAILABLE.value(), e.getMessage()) :
-                        new ResponseError(e.getCode())
-                );
+                .body(new ResponseError(code));
     }
 
     @ExceptionHandler(FeignException.class)
